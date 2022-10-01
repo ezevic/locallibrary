@@ -59,6 +59,7 @@ class BookListView(ListView):
 
 class BookListView(ListView):
     model = Book
+    paginate_by = 10
 
 
 class BookDetailView(DetailView):
@@ -67,6 +68,7 @@ class BookDetailView(DetailView):
 
 class AuthorListView(ListView):
     model = Author
+    paginate_by = 10
 
 
 class AuthorDetailView(DetailView):
