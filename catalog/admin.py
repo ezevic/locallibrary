@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Genre, Book, BookInstance, Author
+from .models import Genre, Book, BookInstance, Author, Language
 
 
 # Define the admin class
@@ -36,6 +36,8 @@ class BookInstanceAdmin(admin.ModelAdmin):
 
         )
     )
+
+admin.site.register(Language)
 
 
 
