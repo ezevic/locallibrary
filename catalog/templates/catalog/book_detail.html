@@ -7,7 +7,7 @@
         <h1>Title: {{ book.title }}</h1>
         <div class='container mt-5'>
             <p>
-                Author: <a href=''>{{ book.author }}</a>
+                Author: <a href='{{ book.author.get_absolute_url }}'>{{ book.author }}</a>
             </p>
             <p>Summary: {{ book.summary }}</p>
             <p>ISBN: {{ book.isbn }}</p>
