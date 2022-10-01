@@ -1,0 +1,23 @@
+{% extends 'base_generic.html' %}
+{% block title %}
+    Books List
+{% endblock title %}
+{% block content %}
+    <div class='container mt-5'>
+        <h1>Book List</h1>
+        {% if book_list %}
+            <ul>
+                {% for book in book_list %}
+                    <li>
+                        <a class='book-name' href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+                        ({{ book.author }})
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay libros para mostrar</p>
+        {% endif %}
+    </div>
+    <p>{{ algun_valor }}</p>
+{% endblock content %}
+    

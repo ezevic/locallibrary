@@ -17,6 +17,16 @@ class Genre(models.Model):
         return self.name
 
 
+class Language(models.Model):
+    """Model representing a Language (e.g. English, French, Japanese, etc.)"""
+    name = models.CharField(
+        max_length=200, help_text="Enter the book's natural language (e.g. English, French, Japanese etc.)")
+
+    def __str__(self):
+        """String for representing the Model object (in Admin site etc.)"""
+        return self.name
+
+
 class Book(models.Model):
     """Model representing a book (but not a specific copy of a book)."""
     title = models.CharField(max_length=200)
@@ -35,13 +45,19 @@ class Book(models.Model):
     genre = models.ManyToManyField(
         Genre, help_text='Select a genre for this book')
 
+    language = models.ForeignKey(
+        'Language', on_delete=models.SET_NULL, null=True)
+
+    class Meta:
+        ordering = ['title', 'author']
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular book instance."""
+        return reverse('book-detail', args=[str(self.id)])
+
     def __str__(self):
         """String for representing the Model object."""
         return self.title
-
-    def get_absolute_url(self):
-        """Returns the URL to access a detail record for this book."""
-        return reverse("book_detail", args=[str(self.id)])
 
 
 class BookInstance(models.Model):
@@ -87,7 +103,7 @@ class Author(models.Model):
         ordering = ['last_name', 'first_name']
 
     def get_absolute_url(self):
-        """Returns the URL to access a particular author instance."""
+        """Returns the url to access a particular author instance."""
         return reverse('author-detail', args=[str(self.id)])
 
     def __str__(self):
