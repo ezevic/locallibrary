@@ -1,5 +1,7 @@
 body {
-  background-color: whitesmoke;
+  background-color: #CACFD6;
+  margin: 0;
+  padding: 0;
 }
 
 .sidebar-nav {
@@ -38,3 +40,15 @@ body {
 #form-pw-res {
   margin-top: 1vh;
 }
+
+#login, #logout {
+  color: whitesmoke;
+  text-decoration: none;
+  opacity: 60%;
+}
+
+#login:hover, #logout:hover {
+  color: white;
+  opacity: 100%;
+}
+

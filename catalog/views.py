@@ -1,6 +1,7 @@
 import http
 from django.shortcuts import render
 from django.views.generic import View, ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from .models import Book, BookInstance, Author, Genre
@@ -64,7 +65,7 @@ class BookListView(ListView):
 """
 
 
-class BookListView(ListView):
+class BookListView(LoginRequiredMixin, ListView):
     model = Book
     paginate_by = 10
 
