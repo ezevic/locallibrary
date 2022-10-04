@@ -26,16 +26,22 @@ def index(request):
 
     book_include_the = Book.objects.filter(title__contains='the').count()
 
+    # Number of visits to this view, as counted in the session variable.
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
         'num_instances_available': num_instances_available,
         'num_authors': num_authors,
         'book_include_the': book_include_the,
+        'num_visits': num_visits
     }
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
+
 
 """
 class BookListView(ListView):
@@ -57,6 +63,7 @@ class BookListView(ListView):
 
 """
 
+
 class BookListView(ListView):
     model = Book
     paginate_by = 10
@@ -73,10 +80,12 @@ class AuthorListView(ListView):
 
 class AuthorDetailView(DetailView):
     model = Author
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['books'] = Book.objects.all().order_by('-title')
         return context
+
 
 """
 La manera larga de escribir la vista de clase ListView es la siguiente
