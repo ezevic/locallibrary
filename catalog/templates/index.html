@@ -24,10 +24,8 @@
         </li>
     </ul>
     {% if num_visits == 0 %}
-    <p>Es la primera vez que visitas esta página</p>
-    {% elif num_visits == 1 %}
-    <p>Ya has visitado esta página una vez</p>
+        <p>Es la primera vez que visitas esta página</p>
     {% else %}
-    <p>Visitaste esta página {{ num_visits }} veces</p>
+        <p>Visitaste esta página {{ num_visits }} ve{{ num_visits|pluralize:"z,ces" }}</p>
     {% endif %}
 {% endblock %}
